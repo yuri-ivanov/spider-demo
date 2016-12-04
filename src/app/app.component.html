@@ -1,6 +1,5 @@
 
   <div class="app-content">
-    <h1>{{brand}}</h1>
     <md-card>
       <form (ngSubmit)="onSearch($event)">
         <md-input  [(ngModel)]="search" name="search" style="width: 70%" placeholder="Search by ModelNr og TypeNr"></md-input>
@@ -12,7 +11,7 @@
       <md-toolbar><button md-raised-button color="primary" (click)="onSave()"><md-icon>save</md-icon>Save</button></md-toolbar>
       <form>
         <table style="width:100%">
-          <tr style="text-align:left"><th>Mmod</th><th>Type</th><th>Model text</th><th>Spider Packages</th></tr>
+          <tr style="text-align:left"><th style="width:10%">Mmod</th><th style="width:10%">Type</th><th style="width:50%">Model text</th><th>Spider Packages</th></tr>
           <tr *ngFor="let model of carmodels; let i = index"><td>{{model.mmod}}</td><td>{{model.type}}</td><td>{{model.text}}</td><td>
             <md-input #packages [(ngModel)]="carmodels[i].spiderPackages" name="carmodels[{{i}}].spiderPackages" placeholder="PK1, PK2, PK3" maxlength="30" style="width:16em;">
               <md-hint align="end">{{packages.characterCount}} / 30</md-hint>

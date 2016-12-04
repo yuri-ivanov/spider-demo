@@ -1,7 +1,11 @@
 <md-sidenav-layout>
 
   <md-sidenav #sidenav mode="side" class="app-sidenav">
-    Sidenav
+    <ul>
+      <li><a routerLink="/vw" (click)="sidenav.toggle()" routerLinkActive="active">VW</a></li>
+      <li><a routerLink="/audi" (click)="sidenav.toggle()" routerLinkActive="active">Audi</a></li>
+      <li><a routerLink="/skoda" (click)="sidenav.toggle()" routerLinkActive="active">Skoda</a></li>
+    </ul>
   </md-sidenav>
 
   <md-toolbar color="primary">
@@ -9,17 +13,20 @@
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
 
-    {{brand}} - Spider
+    <h2 style="padding-left:1em;">Spider - {{brandText}}</h2>
 
     <span class="app-toolbar-filler"></span>
     <button md-button [md-menu-trigger-for]="menu">Options</button>
   </md-toolbar>
 
   <md-menu x-position="before" #menu="mdMenu">
+    <button md-menu-item (click)="priceUpdate()">Run price update</button>
     <button md-menu-item (click)="openDialog()">Settings</button>
     <button md-menu-item (click)="isDarkTheme=!isDarkTheme">Toggle theme</button>
     <button md-menu-item>Help</button>
   </md-menu>
+
+  <md-card *ngIf="priceUpdateStatus" >Price update : {{priceUpdateStatus}}</md-card>
 
   <router-outlet></router-outlet>
 

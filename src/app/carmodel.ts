@@ -4,3 +4,9 @@ export class CarModel{
   text: string;
   spiderPackages: string
 }
+
+export enum Brand {
+    VW,
+    SKODA,
+    AUDI
+}

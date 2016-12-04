@@ -26,15 +26,15 @@ export class AppComponent  implements OnInit{
 
     this.route.params.subscribe(params => {
           this.brand = params['carbrand'];
-          this.onSearch();
-          console.log(this.brand);
+          this.onSearch(null);
         });
   }
 
   onSearch(e){
     if(e) { e.preventDefault(); }
-    console.log("serach: "+this.search);
-    this.carmodels = this.spiderService.findModels(this.search);
+    this.spiderService.findModels(this.search).then(serverCarModels => {
+      this.carmodels = serverCarModels;
+    });
   }
 
   onSave(){
