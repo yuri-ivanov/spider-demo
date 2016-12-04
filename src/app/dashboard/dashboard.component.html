@@ -1,11 +1,11 @@
 <md-sidenav-layout>
 
   <md-sidenav #sidenav mode="side" class="app-sidenav">
-    <ul>
-      <li><a routerLink="/vw" (click)="sidenav.toggle()" routerLinkActive="active">VW</a></li>
-      <li><a routerLink="/audi" (click)="sidenav.toggle()" routerLinkActive="active">Audi</a></li>
-      <li><a routerLink="/skoda" (click)="sidenav.toggle()" routerLinkActive="active">Skoda</a></li>
-    </ul>
+    <md-list>
+      <md-list-item><a routerLink="/vw" (click)="sidenav.toggle()" routerLinkActive="active">VW</a></md-list-item>
+      <md-list-item><a routerLink="/audi" (click)="sidenav.toggle()" routerLinkActive="active">Audi</a></md-list-item>
+      <md-list-item><a routerLink="/skoda" (click)="sidenav.toggle()" routerLinkActive="active">Skoda</a></md-list-item>
+    </md-list>
   </md-sidenav>
 
   <md-toolbar color="primary">
