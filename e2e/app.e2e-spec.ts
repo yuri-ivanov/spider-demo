@@ -1,10 +1,10 @@
-import { AngTestCliPage } from './app.po';
+import { SpiderPage } from './app.po';
 
-describe('ang-test-cli App', function() {
-  let page: AngTestCliPage;
+describe('spider App', function() {
+  let page: SpiderPage;
 
   beforeEach(() => {
-    page = new AngTestCliPage();
+    page = new SpiderPage();
   });
 
   it('should display message saying app works', () => {

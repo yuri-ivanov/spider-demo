@@ -1,6 +1,6 @@
 export class CarModel{
-  mmod: string;
-  type: string;
+  modelNumber: string;
+  typeNumber: string;
   text: string;
   spiderPackages: string
 }

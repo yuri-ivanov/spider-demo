@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class AngTestCliPage {
+export class SpiderPage {
   navigateTo() {
     return browser.get('/');
   }

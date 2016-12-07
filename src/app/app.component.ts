@@ -3,14 +3,15 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location }               from '@angular/common';
 
 import {SpiderService} from './spider.service';
-import {CarModel} from './carmodel';
+import {CarModel, Brand} from './carmodel';
 
 @Component({
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent  implements OnInit{
-  brand: String;
+  brandText: String;
+  brand: Brand;
   search: String;
   carmodels: CarModel[];
 
@@ -22,18 +23,20 @@ export class AppComponent  implements OnInit{
 
   ngOnInit() : void {
     console.log("path param", this.route.params);
-    console.log("path param", this.route.params['carbrand']);
 
     this.route.params.subscribe(params => {
-          this.brand = params['carbrand'];
+          this.brandText = params['carbrand'];
+          this.brand = Brand[Brand[params['carbrand'].toUpperCase()]];
+          console.log("path param", this.brandText, this.brand);
           this.onSearch(null);
         });
   }
 
   onSearch(e){
     if(e) { e.preventDefault(); }
-    this.spiderService.findModels(this.search).then(serverCarModels => {
-      this.carmodels = serverCarModels;
+      this.spiderService.findModels(this.brand, this.search).then(res => {
+        console.log(res);
+        this.carmodels = res;
     });
   }
 
