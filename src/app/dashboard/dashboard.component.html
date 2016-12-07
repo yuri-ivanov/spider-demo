@@ -25,7 +25,10 @@
     <button md-menu-item>Help</button>
   </md-menu>
 
-  <md-card *ngIf="priceUpdateStatus" >Price update : {{priceUpdateStatus}}</md-card>
+  <md-card *ngIf="priceUpdateStatus || requestRunning" [ngClass]="{'error-block':errorStatus}">
+    <md-spinner class="app-spinner" *ngIf="requestRunning"></md-spinner>
+    Price update : {{priceUpdateStatus}}
+  </md-card>
 
   <router-outlet></router-outlet>
 

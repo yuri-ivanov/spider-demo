@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
   brandText: String;
   brand: Brand;
   priceUpdateStatus: String;
+  errorStatus: boolean;
+  requestRunning: boolean;
 
   constructor(
     private spiderService: SpiderService,
@@ -32,12 +34,17 @@ export class DashboardComponent implements OnInit {
   }
 
   priceUpdate(){
+    this.requestRunning = true;
     this.spiderService.updatePrices(this.brand)
     .then(statusString => {
       this.priceUpdateStatus = statusString;
+      this.errorStatus = false;
+      this.requestRunning = false;
     })
     .catch(error => {
       this.priceUpdateStatus = "ERROR - "+error;
+      this.errorStatus = true;
+      this.requestRunning = false;
     });
   }
 

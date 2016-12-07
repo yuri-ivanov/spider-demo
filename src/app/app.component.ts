@@ -14,6 +14,7 @@ export class AppComponent  implements OnInit{
   brand: Brand;
   search: String;
   carmodels: CarModel[];
+  error: string;
 
   constructor(
     private spiderService: SpiderService,
@@ -37,6 +38,9 @@ export class AppComponent  implements OnInit{
       this.spiderService.findModels(this.brand, this.search).then(res => {
         console.log(res);
         this.carmodels = res;
+    }).catch(exception => {
+      this.error = exception;
+      console.log(exception);
     });
   }
 

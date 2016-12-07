@@ -7,6 +7,10 @@
       </form>
     </md-card>
 
+    <md-card *ngIf="error" class="error-block">
+      {{error}}
+    </md-card>
+
     <md-card>
       <md-toolbar><button md-raised-button color="primary" (click)="onSave()"><md-icon>save</md-icon>Save</button></md-toolbar>
       <form>
