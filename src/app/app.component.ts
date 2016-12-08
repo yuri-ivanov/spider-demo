@@ -45,6 +45,6 @@ export class AppComponent  implements OnInit{
   }
 
   onSave(){
-    this.spiderService.saveCarModels(this.carmodels);
+    this.spiderService.saveCarModels(this.brand, this.carmodels);
   }
 }

@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/toPromise';
 import { Component, Injectable } from '@angular/core';
-import { HttpModule, Http, URLSearchParams }    from '@angular/http';
+import { HttpModule, Http, URLSearchParams, Headers, RequestOptions}    from '@angular/http';
 
 import {CarModel, Brand} from './carmodel';
 
@@ -20,7 +20,7 @@ export class SpiderService{
     }*/
     //return Promise.resolve(cars);
     let params = new URLSearchParams();
-    params.set("modelNumber-typeNumber", search);
+    params.set("text", search);
     return this.http.get("api/"+brand+"/search", {search: params})
       .toPromise()
       .then(response => {
@@ -46,8 +46,17 @@ export class SpiderService{
       .catch(this.handleError);
   }
 
-  saveCarModels(carmodels: CarModel[]){
-    console.log("car model saved: ", carmodels);
+  saveCarModels(brand: Brand, carmodels: CarModel[]){
+    let postUrl = '/api/' + brand + '/carmodels';
+    let jsonString = JSON.stringify(carmodels);
+    let headers      = new Headers({ 'Content-Type': 'application/json' });
+    let options       = new RequestOptions({ headers: headers });
+    console.log(options);
+    this.http.post(postUrl, jsonString, options).toPromise()
+      .then(resp => console.log('response', resp))
+      .catch((e:any) => { console.log('error', e); return e; });
+
+    console.log("car model saved: ", postUrl, jsonString);
   }
 
   private handleError(error: any): Promise<any> {
